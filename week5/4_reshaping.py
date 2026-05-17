@@ -25,7 +25,8 @@ batch_of_images = torch.randn(64, 28, 28)   # 64 images, each 28×28
 # TODO 4a: Reshape to [64, 784] using .view()
 # Hint: 28 * 28 = 784
 # Hint: .view(batch_size, new_dim)
-flattened = None  # YOUR CODE HERE
+flattened = batch_of_images.view(64, 784)
+print(f"flattened shape {flattened.shape}")
 
 assert flattened is not None, "Fill in 4a!"
 print(f"4a. Before: {batch_of_images.shape}")
@@ -51,7 +52,7 @@ x = torch.randn(batch_size, seq_len, embed_dim)
 
 # TODO 4b: Reshape x to [8, 128, 12, 64]
 # Hint: x.view(batch_size, seq_len, num_heads, head_dim)
-x_heads = None  # YOUR CODE HERE
+x_heads = x.view(batch_size, seq_len, num_heads, head_dim)
 
 assert x_heads is not None, "Fill in 4b!"
 print(f"\n4b. Before: {x.shape}")
@@ -68,7 +69,7 @@ assert x_heads.shape == torch.Size([8, 128, 12, 64])
 
 # TODO 4c: Permute x_heads from [8, 128, 12, 64] to [8, 12, 128, 64]
 # Hint: .permute(0, 2, 1, 3)
-x_ready = None  # YOUR CODE HERE
+x_ready = x_heads.permute(0 , 2, 1, 3)  # YOUR CODE HERE
 
 assert x_ready is not None, "Fill in 4c!"
 print(f"\n4c. Before permute: {x_heads.shape}")
